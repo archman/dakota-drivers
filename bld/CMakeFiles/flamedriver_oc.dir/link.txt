@@ -1,1 +1,0 @@
-/usr/bin/c++    -std=c++11 -O2   CMakeFiles/flamedriver_oc.dir/cpp/main.cpp.o CMakeFiles/flamedriver_oc.dir/cpp/misc.cpp.o CMakeFiles/flamedriver_oc.dir/cpp/parser.cpp.o  -o bin/flamedriver_oc -lflame_core 

@@ -1,1 +1,0 @@
-/usr/bin/c++    -std=c++11 -O2   CMakeFiles/test_parser.dir/cpp/test_parser.cpp.o CMakeFiles/test_parser.dir/cpp/parser.cpp.o  -o bin/test_parser 
