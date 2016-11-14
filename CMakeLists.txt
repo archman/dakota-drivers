@@ -1,6 +1,6 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.0)
 
-# set BOOST lib path
+# set BOOST lib path, if already has, comment out the following three lines
 set (Boost_ROOT "/opt/boost161")
 set (Boost_INCLUDE_DIRS "${Boost_ROOT}/include")
 set (Boost_LIBRARY_DIRS "${Boost_ROOT}/lib")
@@ -14,9 +14,11 @@ set (EXECUTABLE_OUTPUT_PATH "${PROJECT_BINARY_DIR}/bin")
 
 include_directories(
   ${Boost_INCLUDE_DIRS}
+  # uncomment out the following line if FLAME_SRC is defined
   #${FLAME_SRC}
 )
 
+# uncomment out the following three lines if FLAME_LIB is defined
 #link_directories(
 #    ${FLAME_LIB}
 #)
@@ -27,11 +29,14 @@ add_executable(flamedriver_oc
     ${OPT_SOURCE_DIR}/parser.cpp
 )
 
-add_executable(test_parser
-  #${OPT_SOURCE_DIR}/test_parser.cpp
-  ${OPT_SOURCE_DIR}/parser.cpp
-)
+#add_executable(test_parser
+#  ${OPT_SOURCE_DIR}/test_parser.cpp
+#  ${OPT_SOURCE_DIR}/parser.cpp
+#)
 
 target_link_libraries(flamedriver_oc
   flame_core
 )
+
+install(TARGETS flamedriver_oc 
+    DESTINATION /usr/local/bin)
