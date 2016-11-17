@@ -50,13 +50,22 @@ int main(int argc, char *argv[])
         Machine mymachine(*conf);
 
         // setup monitors and correctors
-        std::vector<int> idx_bpms  = str2intvec(argv[2]);
+        std::vector<int> idx_bpms;
+        if(std::string(argv[2]) == "all") {
+            idx_bpms = get_all_elem(mymachine);
+        } else {
+            idx_bpms = str2intvec(argv[2]);
+        }
+
         std::vector<int> idx_xcors = str2intvec(argv[3]);
         std::vector<int> idx_ycors = str2intvec(argv[4]);
 
         // reference orbit
         std::vector<double> ref_x0 = str2dblvec(argv[5]);
         std::vector<double> ref_y0 = str2dblvec(argv[6]);
+
+        //std::cout << ref_x0.size() << std::endl;
+        //std::cout << idx_bpms.size() << std::endl;
 
         if ((ref_x0.size() != idx_bpms.size()) || ref_y0.size() != idx_bpms.size())
         {
@@ -86,6 +95,11 @@ int main(int argc, char *argv[])
 
         //!< before re-configure
         // debug_print_econf(*e);
+        //
+        //
+        dvec *x_array = new dvec();
+        dvec *y_array = new dvec();
+        set_observer(mymachine, idx_bpms, x_array, y_array);
         
         typedef std::vector<int>::iterator ivecit;
         std::map<std::string, double>::iterator mit = vars.begin();
@@ -104,13 +118,13 @@ int main(int argc, char *argv[])
 
 
         //!< define a vector to store the data of interest from output
-        dvec *x_array = new dvec();
-        dvec *y_array = new dvec();
+        //dvec *x_array = new dvec();
+        //dvec *y_array = new dvec();
 
         //!< setup observers for data retrievement,
         //!< data should be stored into x_array
-        ElementVoid *e;
-        set_observer(e, mymachine, x_array, y_array);
+        // ElementVoid *e;
+        //set_observer(mymachine, idx_bpms, x_array, y_array);
 
         //!> print out machine configuration (except lattice)
 //        debug_print_mconf(mymachine);

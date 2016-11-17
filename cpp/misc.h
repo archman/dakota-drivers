@@ -58,12 +58,12 @@ void debug_print_dvec(dvec *x);
 /** \brief test set_observer(),
  * affect the Observer::view() behavior when Machine::propagate() is issued.
  *
- * @param e ElementVoid point
  * @param m reference to Machine
+ * @param b integer vector of selected BPM indices
  * @param x double vector to store results, x envelope
  * @param y double vector to store results, y envelope
  */
-void set_observer(ElementVoid *e, Machine &m, dvec *x, dvec *y);
+void set_observer(Machine &m, std::vector<int> &b, dvec *x, dvec *y);
 
 /** \brief user-defined struct to generate observer
  * to feed the requirement of Observer::view()
@@ -137,5 +137,12 @@ std::vector<double> str2dblvec(std::string s);
 // template here is not working, I don't know why.
 template <typename T>
 std::vector<T> str2vec(std::string s);
+
+/** \brief get all element indices from machine
+ *
+ * @param m reference to Machine point
+ * @return integer vector of element indices
+ */
+std::vector<int> get_all_elem(Machine &m);
 
 #endif // MISC_H_

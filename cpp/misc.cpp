@@ -75,18 +75,27 @@ void debug_print_mconf(Machine &m) {
     std::cout << "--------------  Machine Conf (END) ---------------\n" << std::endl;
 }
 
-void set_observer(ElementVoid *e, Machine& m, dvec *x_array, dvec *y_array)
+void set_observer(Machine& m, std::vector<int> &b, dvec *x_array, dvec *y_array)
 {
     std::auto_ptr <ObserverFactory> ofact;
     ofact.reset(new MyObserver::Factory(x_array, y_array));
 
-    BOOST_FOREACH(e, m)
+    for(std::vector<int>::iterator it=b.begin(); it!=b.end(); ++it)
     {
-        if (std::string(e->type_name()) == "bpm") {
-            assert(e->observer() == NULL);
-            e->set_observer(ofact->observe(m, e));
-        }
+
+        assert(m[*it]->observer() == NULL);
+        m[*it]->set_observer(ofact->observe(m, m[*it]));
     }
+
+
+//    ElementVoid *e;
+//    BOOST_FOREACH(e, m)
+//    {
+//        if (std::string(e->type_name()) == "bpm") {
+//            assert(e->observer() == NULL);
+//            e->set_observer(ofact->observe(m, e));
+//        }
+//    }
 }
 
 void debug_print_dvec(dvec *x) {
@@ -178,5 +187,15 @@ std::vector<T> str2vec(std::string s)
         vec.push_back(tmp);
     }
 
+    return vec;
+}
+
+std::vector<int> get_all_elem(Machine &m) {
+    std::vector<int> vec;
+    ElementVoid *e;
+    BOOST_FOREACH(e, m)
+    {
+        vec.push_back(e->index);
+    }
     return vec;
 }
