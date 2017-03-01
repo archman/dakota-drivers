@@ -1,0 +1,43 @@
+# 
+# orbit correction analysis driver
+# 
+# Tong Zhang <zhangt@frib.msu.edu>
+# 2016-10-16 21:01:34 PM EDT
+#
+
+environment
+  tabular_data
+    tabular_data_file "flame_oc.dat"
+
+method
+  max_iterations = 500
+  convergence_tolerance = 1e-7
+  conmin_frcg
+
+model
+  single
+
+variables
+  continuous_design = 4
+    initial_point  0.0001  0.0001  0.0001  0.0001
+    lower_bounds  -0.2 -0.2 -0.2 -0.2
+    upper_bounds   0.2  0.2  0.2  0.2
+    descriptors   "x2" "y1" "x1" "y2"
+
+interface
+    fork
+      #analysis_driver = 'flame_oc.sh'
+      analysis_driver = 'flamedriver /home/tong1/work/FRIB/projects/flame_github/optdrivers/oc/test_392.lat'
+      parameters_file = 'params.in'
+      results_file    = 'results.out'
+      work_directory directory_tag
+      named 'workdir' file_save directory_save
+      deactivate active_set_vector
+
+responses
+  num_objective_functions = 1
+  numerical_gradients
+    method_source dakota
+    interval_type forward
+    fd_gradient_step_size 1.0e-6
+  no_hessians

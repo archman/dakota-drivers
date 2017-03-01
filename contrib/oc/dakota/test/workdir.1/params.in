@@ -1,0 +1,14 @@
+                                          4 variables
+                      1.000000000000000e-04 x002
+                      2.000000000000000e-04 y100
+                      3.000000000000000e-04 y020
+                      4.000000000000000e-04 x001
+                                          1 functions
+                                          1 ASV_1:obj_fn
+                                          4 derivative_variables
+                                          1 DVV_1:x2
+                                          2 DVV_2:y1
+                                          3 DVV_3:x1
+                                          4 DVV_4:y2
+                                          0 analysis_components
+                                          1 eval_id

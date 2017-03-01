@@ -1,6 +1,6 @@
-==========
-optdrivers
-==========
+==============
+datako-drivers
+==============
 
 Analysis drivers for general optimization.
 

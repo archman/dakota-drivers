@@ -1,5 +1,5 @@
-optdrivers
-==========
+dakota-drivers
+==============
 
 Analysis drivers for general optimization.
 
