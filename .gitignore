@@ -25,7 +25,4 @@
 
 # Executables
 *.exe
-*.out
 *.app
-
-bld
